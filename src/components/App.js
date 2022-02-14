@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Overview from "./Overview";
 
 class App extends Component {
   constructor(props) {
@@ -29,12 +30,15 @@ class App extends Component {
   };
 
   render() {
+    const items = this.state.taskList.map(i => <li key={i}>{i}</li>);
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
         <input value={this.state.input} onChange={this.handleChange} />
         <button type="submit">Submit</button>
         </form>
+        <Overview items={items} />
       </div>
     );
   }
