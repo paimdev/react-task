@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Overview from "./Overview";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor(props) {
@@ -22,15 +23,16 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({
-      taskList: this.state.taskList.concat(this.state.input),
-      input: ''
-    });
-    console.log(this.state);
+    if (this.state.input !== '') {
+      this.setState({
+        taskList: this.state.taskList.concat(this.state.input),
+        input: ''
+      });
+    }
   };
 
   render() {
-    const items = this.state.taskList.map(i => <li key={i}>{i}</li>);
+    const items = this.state.taskList.map(i => <li key={uniqid()}>{i}</li>);
 
     return (
       <div>
